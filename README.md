@@ -1,9 +1,13 @@
 InterRCCar
 ==========
 
+Basé sur les travaux de Jon Bennett
+
+http://www.jbprojects.net/articles/programmable-rc/
+
 21/08
 
-j'ai mis en place mon environnement de travail au sous sol après avoir vérifié que la voiture radiocommandée fonctionnait correctement.
+Mise en place mon environnement de travail au sous sol après avoir vérifié que la voiture radiocommandée fonctionnait correctement.
 
 Installation de quelques programmes indispensables, tel que Github windows et l'IDE arduino.
 
