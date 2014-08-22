@@ -1,7 +1,7 @@
 // Formula Zero
 // Robot Vehicle firmware for the Arduino platform
 //
-// Copyright (c) 2014 by Valéry Farcy
+// Copyright (c) 2014 by ValÃ©ry Farcy
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,13 +26,27 @@
  * @author Valery Farcy
  */
 
+// Pin Functions
+#define FORWARD_PIN   (9)
+#define BACKWARD_PIN   (10)
+#define LED_PIN   (13)
+
 
 void setup()
 {
-    
+  pinMode(FORWARD_PIN, OUTPUT); 
+  pinMode(BACKWARD_PIN, OUTPUT); 
+  pinMode(LED_PIN, OUTPUT);
 }
 
 void loop()
 {
-    
+  analogWrite( BACKWARD_PIN, 200 );
+  delay(5000);
+  analogWrite( FORWARD_PIN, 200 );
+  analogWrite( LED_PIN, 255 );  
+  /*delay( 1000 ); 
+  analogWrite( FORWARD_PIN, 0 );
+  analogWrite( LED_PIN, 0 );
+  delay( 4000 ); */
 }
