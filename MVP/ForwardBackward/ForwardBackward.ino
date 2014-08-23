@@ -36,6 +36,7 @@
 
 void setup()
 {
+  Serial.begin(115200);
   pinMode(FORWARD_PIN, OUTPUT);                                                                                                                                                                                                                                                                      
   pinMode(BACKWARD_PIN, OUTPUT); 
   pinMode(LEFT_PIN, OUTPUT);
@@ -45,10 +46,10 @@ void setup()
 
 void loop()
 {
-  int i;
-  analogWrite( BACKWARD_PIN, 225 );
-    /*delay(1000);
-  for (i=0;i<20;i++) analogWrite( FORWARD_PIN, 200 );
-  analogWrite( FORWARD_PIN, 0 );*/
-  
+    
+    analogWrite( BACKWARD_PIN, 185 );
+ 
+    
+    /*analogWrite( FORWARD_PIN, 185 );  */          
+
 }
