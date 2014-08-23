@@ -21,7 +21,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /**
- * @file Formulazero.ino
+ * @file Zero.ino
  * @brief Arduino Formula zero vehicle firmware.
  * @author Valery Farcy
  */
@@ -36,20 +36,19 @@
 
 void setup()
 {
-  Serial.begin(115200);
   pinMode(FORWARD_PIN, OUTPUT);                                                                                                                                                                                                                                                                      
   pinMode(BACKWARD_PIN, OUTPUT); 
   pinMode(LEFT_PIN, OUTPUT);
   pinMode(RIGHT_PIN, OUTPUT);
   pinMode(LED_PIN, OUTPUT);
+  
+  digitalWrite(LEFT_PIN, LOW);
+  digitalWrite(RIGHT_PIN, LOW);
+  analogWrite(FORWARD_PIN,0);
+  analogWrite(BACKWARD_PIN,0);    
 }
 
 void loop()
 {
-    
-    analogWrite( BACKWARD_PIN, 185 );
- 
-    
-    /*analogWrite( FORWARD_PIN, 185 );  */          
-
+  
 }
