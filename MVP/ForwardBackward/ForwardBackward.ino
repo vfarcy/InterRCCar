@@ -46,10 +46,9 @@ void setup()
 void loop()
 {
   int i;
-  for (i=0;i<20;i++) analogWrite( BACKWARD_PIN, 20 );
-  analogWrite( BACKWARD_PIN, 0 );
-  delay(1000);
+  analogWrite( BACKWARD_PIN, 225 );
+    /*delay(1000);
   for (i=0;i<20;i++) analogWrite( FORWARD_PIN, 200 );
-  analogWrite( FORWARD_PIN, 0 );
-  delay( 1000 ); 
+  analogWrite( FORWARD_PIN, 0 );*/
+  
 }
