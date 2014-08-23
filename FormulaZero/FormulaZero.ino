@@ -29,23 +29,37 @@
 // Pin Functions
 #define FORWARD_PIN   (9)
 #define BACKWARD_PIN   (10)
+#define LEFT_PIN     (11)
+#define RIGHT_PIN    (12)
 #define LED_PIN   (13)
 
 
 void setup()
 {
-  pinMode(FORWARD_PIN, OUTPUT); 
+  pinMode(FORWARD_PIN, OUTPUT);                                                                                                                                                                                                                                                                      
   pinMode(BACKWARD_PIN, OUTPUT); 
+  pinMode(LEFT_PIN, OUTPUT);
+  pinMode(RIGHT_PIN, OUTPUT);
   pinMode(LED_PIN, OUTPUT);
 }
 
 void loop()
 {
-  analogWrite( BACKWARD_PIN, 200 );
+  digitalWrite(LEFT_PIN, HIGH);
+  delay(1000);
+  digitalWrite(LEFT_PIN, LOW);
+  delay(1000);
+  digitalWrite(RIGHT_PIN, HIGH);
+  delay(1000);
+  digitalWrite(RIGHT_PIN, LOW);
+  delay(1000);
+  /*analogWrite( FORWARD_PIN, 20 );
+  analogWrite( BACKWARD_PIN, 0 );
   delay(5000);
   analogWrite( FORWARD_PIN, 200 );
+  analogWrite( FORWARD_PIN, 0 );
   analogWrite( LED_PIN, 255 );  
-  /*delay( 1000 ); 
+  delay( 1000 ); 
   analogWrite( FORWARD_PIN, 0 );
   analogWrite( LED_PIN, 0 );
   delay( 4000 ); */
