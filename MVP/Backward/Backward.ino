@@ -27,8 +27,9 @@
  */
 
 // Pin Functions
-#define FORWARD_PIN   (9)
 #define BACKWARD_PIN   (10)
+
+#define FORWARD_PIN   (9)
 #define LEFT_PIN     (11)
 #define RIGHT_PIN    (12)
 #define LED_PIN   (13)
@@ -36,9 +37,10 @@
 
 void setup()
 {
+  pinMode(BACKWARD_PIN, OUTPUT); 
+
   Serial.begin(115200);
   pinMode(FORWARD_PIN, OUTPUT);                                                                                                                                                                                                                                                                      
-  pinMode(BACKWARD_PIN, OUTPUT); 
   pinMode(LEFT_PIN, OUTPUT);
   pinMode(RIGHT_PIN, OUTPUT);
   pinMode(LED_PIN, OUTPUT);
@@ -48,8 +50,7 @@ void loop()
 {
     
     analogWrite( BACKWARD_PIN, 10 );
- 
     
-    /* analogWrite( FORWARD_PIN, 5 ); */          
+    
 
 }

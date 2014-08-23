@@ -28,6 +28,7 @@
 
 // Pin Functions
 #define FORWARD_PIN   (9)
+
 #define BACKWARD_PIN   (10)
 #define LEFT_PIN     (11)
 #define RIGHT_PIN    (12)
@@ -36,9 +37,9 @@
 
 void setup()
 {
-  Serial.begin(115200);
-  pinMode(FORWARD_PIN, OUTPUT);                                                                                                                                                                                                                                                                      
-  pinMode(BACKWARD_PIN, OUTPUT); 
+  pinMode(FORWARD_PIN, OUTPUT);    
+  
+  Serial.begin(115200);                                                                                                                                                                                                                                                                    pinMode(BACKWARD_PIN, OUTPUT); 
   pinMode(LEFT_PIN, OUTPUT);
   pinMode(RIGHT_PIN, OUTPUT);
   pinMode(LED_PIN, OUTPUT);
