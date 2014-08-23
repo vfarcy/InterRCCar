@@ -49,7 +49,7 @@ void setup()
 void loop()
 {
     
-    analogWrite( BACKWARD_PIN, 10 );
+    analogWrite( BACKWARD_PIN, 15 );
     
     
 
