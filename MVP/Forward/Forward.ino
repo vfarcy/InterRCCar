@@ -48,6 +48,6 @@ void loop()
 {
     
    
-    analogWrite( FORWARD_PIN, 5 );          
+    analogWrite( FORWARD_PIN, 12 );          
 
 }
