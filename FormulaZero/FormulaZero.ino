@@ -56,31 +56,19 @@ enum COMMAND_IDS
 struct Command /* http://www.c4learn.com/c-programming/c-initializing-array-of-structure/ */
 /* byte is similar to char, but for unsigned values.*/
 {
-    byte id;     /* not used for the moment, always set to DRIVE */ 
     byte data1;  /*direction : FF (forward) FR (forward right) FL (forward left) BB (backward) BL (backward left) BR (backward right) LL (left) RR (right) SS (stop) - See https://github.com/JBionics/Programmable-RC-Car/blob/master/programmable_rc_controller/src/SequenceThread.java and https://github.com/JBionics/Programmable-RC-Car/blob/master/arduino/arduino_programmable_rc.pde*/
-    byte data2;  /*speed : 0 to 255 */ /*duration : 0 to 255 ms*/  
-    byte checksum;  /*not used, set to 255 for the moment*/
+    byte data2;  /*speed : 0 to 255 */ /*duration : 0 to 255 ms*/ 
+    int data3;  /*duration in ms*/ 
 }C[] = {
-          {DRIVE,FORWARD_BIT + RIGHT_BIT,8,255}, /*Write the car's journey here  */
-          /*{DRIVE,FORWARD_BIT,8,255},
-          {DRIVE,FORWARD_BIT,98,255},          
-          {DRIVE,FORWARD_BIT,28,255}, 
-          {DRIVE,FORWARD_BIT,28,255}, 
-          {DRIVE,FORWARD_BIT,28,255} 
-          {DRIVE,FORWARD_BIT + LEFT_BIT,8,255},
-          {DRIVE,FORWARD_BIT,8,255}, 
-          {DRIVE,FORWARD_BIT,8,255}, 
-          {DRIVE,FORWARD_BIT,8,255}, 
-          {DRIVE,FORWARD_BIT + RIGHT_BIT,8,255},            
-          {DRIVE,FORWARD_BIT + LEFT_BIT,18,255},
-          {DRIVE,FORWARD_BIT + LEFT_BIT,8,255}*/
+          {FORWARD_BIT,5,3000}, /*Write the car's journey here  */
+          {FORWARD_BIT+LEFT_BIT,5,5000},
+          {BACKWARD_BIT,15,1500},   
+          {FORWARD_BIT+RIGHT_BIT,20,1500},         
           
+        
         };;
 
-
-
-
-void driveCar(struct Command &newCmd)
+void processCommand(struct Command &newCmd)
 {
     
     // If forward and backward are both enabled, error, remove the backward bit set
@@ -112,40 +100,20 @@ void driveCar(struct Command &newCmd)
     if (newCmd.data1 & LEFT_BIT) {
         digitalWrite(LEFT_PIN, HIGH);
     } else {
-        /*digitalWrite(LEFT_PIN, LOW);*/
+        digitalWrite(LEFT_PIN, LOW);
     }
     
     // Drive right if enabled
     if (newCmd.data1 & RIGHT_BIT) {
         digitalWrite(RIGHT_PIN, HIGH);
     } else {
-        /*digitalWrite(RIGHT_PIN, LOW);*/
+        digitalWrite(RIGHT_PIN, LOW);
     }
-}
 
-void processCommand(struct Command &newCmd)
-{
-    switch (newCmd.id)
-    {
-        case DRIVE:
-            /*dbg_print("Drive...");*/
-            driveCar(newCmd);
-            break;
-        default:
-            // Unknown Command, do nothing
-            dbg_print("Invalid cmd received...");
-            break;
-    }
+    delay(newCmd.data3);  
 }
 
 
-// If DEBUG is enabled, this function writes a string to the serial port
-void dbg_print(const char * s)
-{
-#if DEBUG
-    Serial.write(s);
-#endif
-}
 
 void setup()
 {
@@ -163,11 +131,11 @@ void loop()
   
    int i,n;
    
-   n = sizeof(C)/sizeof(C[0]); //How many commands ?
-   Serial.println(n);
-   
-   for(i=0;i<n;i++) processCommand(C[i]); //Process each command
-  
+   n = sizeof(C)/sizeof(C[0]); //How many commands do we have to process ?
+      
+   for(i=0;i<n;i++) {
+     processCommand(C[i]); //Process each command     
+   }
    
 /* See https://github.com/JBionics/Programmable-RC-Car/blob/master/arduino/arduino_programmable_rc.pde */
 }

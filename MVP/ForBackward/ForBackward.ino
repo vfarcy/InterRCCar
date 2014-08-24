@@ -21,7 +21,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /**
- * @file Forward.ino
+ * @file ForBacKward.ino
  * @brief Arduino Formula zero vehicle firmware.
  * @author Valery Farcy
  */
@@ -48,7 +48,12 @@ void setup()
 void loop()
 {
     
-   
-    analogWrite( FORWARD_PIN, 12 );          
+  analogWrite( FORWARD_PIN, 15 );         
+  delay(5000);
+  analogWrite( FORWARD_PIN, 0 ); 
+  analogWrite( BACKWARD_PIN, 5 );   
+  delay(5000);
+  analogWrite( BACKWARD_PIN, 0 );  
+        
 
 }
