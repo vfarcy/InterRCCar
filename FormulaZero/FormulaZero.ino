@@ -56,14 +56,15 @@ enum COMMAND_IDS
 struct Command /* http://www.c4learn.com/c-programming/c-initializing-array-of-structure/ */
 /* byte is similar to char, but for unsigned values.*/
 {
-    byte id;     /*direction : FF (forward) FR (forward right) FL (forward left) BB (backward) BL (backward left) BR (backward right) LL (left) RR (right) SS (stop) - See https://github.com/JBionics/Programmable-RC-Car/blob/master/programmable_rc_controller/src/SequenceThread.java and https://github.com/JBionics/Programmable-RC-Car/blob/master/arduino/arduino_programmable_rc.pde*/
-    byte data1;  /*speed : 0 to 255 */
-    byte data2;  /*duration : 0 to 255 ms*/  
-    byte checksum;  
-}C[3] = {
-          {FORWARD_BIT + RIGHT_BIT,15,255,0}, /*Write the car's journey here  */
-          {FORWARD_BIT + LEFT_BIT,12,7,255},
-          {STOP,10,11,0}
+    byte id;     /* not used for the moment, always set to DRIVE */ 
+    byte data1;  /*direction : FF (forward) FR (forward right) FL (forward left) BB (backward) BL (backward left) BR (backward right) LL (left) RR (right) SS (stop) - See https://github.com/JBionics/Programmable-RC-Car/blob/master/programmable_rc_controller/src/SequenceThread.java and https://github.com/JBionics/Programmable-RC-Car/blob/master/arduino/arduino_programmable_rc.pde*/
+    byte data2;  /*speed : 0 to 255 */ /*duration : 0 to 255 ms*/  
+    byte checksum;  /*not used, set to 255 for the moment*/
+}C[] = {
+          {DRIVE,FORWARD_BIT + RIGHT_BIT,15,255}, /*Write the car's journey here  */
+          {DRIVE,FORWARD_BIT,95,255},
+          {DRIVE,BACKWARD_BIT + LEFT_BIT,12,255}
+          
         };;
 
 
@@ -149,48 +150,18 @@ void setup()
 void loop()
 {
   
-  Command incomingCmd;
-  
-  /*
-  Serial.println(C[0].id,HEX);
-  Serial.println(C[0].data1,HEX);
-  Serial.println(C[0].data2,HEX);
-  Serial.println(C[0].checksum,HEX);
-  
-  Serial.println(C[1].id,HEX);
-  Serial.println(C[1].data1,HEX);
-  Serial.println(C[1].data2,HEX);
-  Serial.println(C[1].checksum,HEX);
-  
-  Serial.println(C[2].id,HEX);
-  Serial.println(C[2].data1,HEX);
-  Serial.println(C[2].data2,HEX);
-  Serial.println(C[2].checksum,HEX);
-  
-  */
-  
-   if (Serial.available() >= sizeof(Command)) { /*To be modified LATER !!!!!!!!!!!!!!!!!!!!!!!!*/
-        // read the incoming data from C[] !!!!!!!!!!!!!!! To be modified LATER !!!!!!!!!!!!!:
-        Command * mem = &incomingCmd;
-        unsigned char * p = (unsigned char *)mem;
-        for (int i = 0; i < sizeof(Command); i++) {
-            unsigned int data = Serial.read();
-            p[i] = data;
-        }
-  
-  processCommand(incomingCmd);
-  
-       // Should be processed way more seriously, w/ checksum verification, like this 
-       /*
-        byte received_sum = incomingCmd.id + incomingCmd.data1 + incomingCmd.data2;
-        if (incomingCmd.id != INVALID_CMD && received_sum == incomingCmd.checksum) {
-            processCommand(incomingCmd);
-            dbg_print("Good Cmd - checksum matched");
-        } else {
-            //Checksum didn't match, don't process the command
-            dbg_print("Bad Cmd - invalid cmd or checksum didn't match");
-        }     
-      */
-   }
+   int i,n;
+   
+   n = sizeof(C)/sizeof(C[0]);
+   Serial.println(n);
+   
+   for(i=0;i<n;i++) processCommand(C[i]);
+   
+   /*
+   processCommand(C[0]);
+   processCommand(C[1]);
+   processCommand(C[2]);
+   */
+   
 /* See https://github.com/JBionics/Programmable-RC-Car/blob/master/arduino/arduino_programmable_rc.pde */
 }
