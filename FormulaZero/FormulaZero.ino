@@ -61,9 +61,9 @@ struct Command /* http://www.c4learn.com/c-programming/c-initializing-array-of-s
     byte data2;  /*speed : 0 to 255 */ /*duration : 0 to 255 ms*/  
     byte checksum;  /*not used, set to 255 for the moment*/
 }C[] = {
-          {DRIVE,FORWARD_BIT + RIGHT_BIT,15,255}, /*Write the car's journey here  */
-          {DRIVE,FORWARD_BIT,95,255},
-          {DRIVE,BACKWARD_BIT + LEFT_BIT,12,255}
+          {DRIVE,FORWARD_BIT + RIGHT_BIT,8,255}, /*Write the car's journey here  */
+          {DRIVE,FORWARD_BIT + LEFT_BIT,8,255},
+          {DRIVE,BACKWARD_BIT,8,255}
           
         };;
 
