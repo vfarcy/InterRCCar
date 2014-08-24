@@ -28,12 +28,6 @@
 
 #define DEBUG (1)
 
-enum COMMAND_IDS
-{
-    INVALID_CMD = 0,
-    DRIVE = 10
-};
-
 // Pin Functions
 #define FORWARD_PIN   (9)
 #define BACKWARD_PIN   (10)
