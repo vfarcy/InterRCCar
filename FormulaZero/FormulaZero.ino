@@ -57,10 +57,10 @@ struct Command /* http://www.c4learn.com/c-programming/c-initializing-array-of-s
 /* byte is similar to char, but for unsigned values.*/
 {
     byte data1;  /*direction : FF (forward) FR (forward right) FL (forward left) BB (backward) BL (backward left) BR (backward right) LL (left) RR (right) SS (stop) - See https://github.com/JBionics/Programmable-RC-Car/blob/master/programmable_rc_controller/src/SequenceThread.java and https://github.com/JBionics/Programmable-RC-Car/blob/master/arduino/arduino_programmable_rc.pde*/
-    byte data2;  /*speed : 0 to 255 */ /*duration : 0 to 255 ms*/ 
+    byte data2;  /*speed : 0 to 255 */ 
     int data3;  /*duration in ms*/ 
 }C[] = {
-          {FORWARD_BIT,5,3000}, /*Write the car's journey here  */
+          {FORWARD_BIT,5,3000}, /*Write the car's journey here.  */
           {FORWARD_BIT+LEFT_BIT,5,5000},
           {BACKWARD_BIT,15,1500},   
           {FORWARD_BIT+RIGHT_BIT,20,1500},         
@@ -110,7 +110,7 @@ void processCommand(struct Command &newCmd)
         digitalWrite(RIGHT_PIN, LOW);
     }
 
-    delay(newCmd.data3);  
+    delay(newCmd.data3);  // Wait until the command has been executed long enough 
 }
 
 
