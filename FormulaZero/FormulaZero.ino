@@ -116,12 +116,12 @@ void processCommand(struct Command &newCmd)
     switch (newCmd.id)
     {
         case DRIVE:
-            /*dbg_print("Drive...");*/
+            dbg_print("Drive...");
             driveCar(newCmd);
             break;
         default:
             // Unknown Command, do nothing
-            /*dbg_print("Invalid cmd received...");*/
+            dbg_print("Invalid cmd received...");
             break;
     }
 }
