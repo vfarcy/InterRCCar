@@ -54,12 +54,12 @@ struct Command /* http://www.c4learn.com/c-programming/c-initializing-array-of-s
     byte data2;  /*speed : 0 to 255 */ 
     int data3;  /*duration in ms*/ 
 }C[] = {
-          {FORWARD_BIT,5,3000}, /*Write the car's journey here.  */
-          {FORWARD_BIT+LEFT_BIT,5,5000},
-          {BACKWARD_BIT,15,1500},   
-          {FORWARD_BIT+RIGHT_BIT,20,1500},         
-          
-        
+          {FORWARD_BIT,15,2000}, /*Write the car's journey here.  */
+          {BACKWARD_BIT+LEFT_BIT,15,2000},
+          {FORWARD_BIT,15,2000},   
+          {BACKWARD_BIT+RIGHT_BIT,15,2000},         
+          {BACKWARD_BIT+LEFT_BIT,15,2000},
+                
         };;
 
 void processCommand(struct Command &newCmd)
@@ -126,8 +126,10 @@ void loop()
    int i,n;
    
    n = sizeof(C)/sizeof(C[0]); //How many commands do we have to process ?
-      
+    
+   
    for(i=0;i<n;i++) {
      processCommand(C[i]); //Process each command     
    }
+  
 }
