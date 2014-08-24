@@ -62,8 +62,9 @@ struct Command /* http://www.c4learn.com/c-programming/c-initializing-array-of-s
     byte checksum;  /*not used, set to 255 for the moment*/
 }C[] = {
           {DRIVE,FORWARD_BIT + RIGHT_BIT,8,255}, /*Write the car's journey here  */
-          {DRIVE,FORWARD_BIT + RIGHT_BIT,8,255},          
-          /*{DRIVE,FORWARD_BIT,28,255}, 
+          /*{DRIVE,FORWARD_BIT,8,255},
+          {DRIVE,FORWARD_BIT,98,255},          
+          {DRIVE,FORWARD_BIT,28,255}, 
           {DRIVE,FORWARD_BIT,28,255}, 
           {DRIVE,FORWARD_BIT,28,255} 
           {DRIVE,FORWARD_BIT + LEFT_BIT,8,255},
@@ -81,6 +82,7 @@ struct Command /* http://www.c4learn.com/c-programming/c-initializing-array-of-s
 
 void driveCar(struct Command &newCmd)
 {
+    
     // If forward and backward are both enabled, error, remove the backward bit set
     if ((newCmd.data1 & FORWARD_BIT) && (newCmd.data1 & BACKWARD_BIT)) {
         newCmd.data1 -= BACKWARD_BIT;
@@ -110,14 +112,14 @@ void driveCar(struct Command &newCmd)
     if (newCmd.data1 & LEFT_BIT) {
         digitalWrite(LEFT_PIN, HIGH);
     } else {
-        digitalWrite(LEFT_PIN, LOW);
+        /*digitalWrite(LEFT_PIN, LOW);*/
     }
     
     // Drive right if enabled
     if (newCmd.data1 & RIGHT_BIT) {
         digitalWrite(RIGHT_PIN, HIGH);
     } else {
-        digitalWrite(RIGHT_PIN, LOW);
+        /*digitalWrite(RIGHT_PIN, LOW);*/
     }
 }
 
@@ -126,7 +128,7 @@ void processCommand(struct Command &newCmd)
     switch (newCmd.id)
     {
         case DRIVE:
-            dbg_print("Drive...");
+            /*dbg_print("Drive...");*/
             driveCar(newCmd);
             break;
         default:
