@@ -155,13 +155,8 @@ void loop()
    n = sizeof(C)/sizeof(C[0]);
    Serial.println(n);
    
-   for(i=0;i<n;i++) processCommand(C[i]);
-   
-   /*
-   processCommand(C[0]);
-   processCommand(C[1]);
-   processCommand(C[2]);
-   */
+   for(i=0;i<n;i++) processCommand(C[i]); 
+  
    
 /* See https://github.com/JBionics/Programmable-RC-Car/blob/master/arduino/arduino_programmable_rc.pde */
 }
