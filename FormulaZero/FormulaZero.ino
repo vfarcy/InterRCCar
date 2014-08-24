@@ -136,6 +136,4 @@ void loop()
    for(i=0;i<n;i++) {
      processCommand(C[i]); //Process each command     
    }
-   
-/* See https://github.com/JBionics/Programmable-RC-Car/blob/master/arduino/arduino_programmable_rc.pde */
 }
